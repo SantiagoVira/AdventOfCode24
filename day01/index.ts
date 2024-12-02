@@ -7,9 +7,9 @@ const rights: number[] = [];
 const rights_dict = {};
 
 for (const line of data) {
-  const data = line.split(" ");
-  const l = Number(data[0]);
-  const r = Number(data[3]);
+  const vals = line.split(" ");
+  const l = Number(vals[0]);
+  const r = Number(vals[3]);
 
   lefts.push(Number(l));
   rights.push(r);
@@ -21,6 +21,7 @@ for (const line of data) {
 }
 
 lefts.sort();
+rights.sort();
 
 let sum = 0;
 
