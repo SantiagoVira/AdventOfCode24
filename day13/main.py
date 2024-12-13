@@ -1,13 +1,16 @@
-with open("./input.txt") as f:
-    machines = f.read().split("\n\n")
-    data = []
-    for m in machines:
-        lines = m.split("\n")
-        a = tuple(map(int, lines[0][12:].split(", Y+")))
-        b = tuple(map(int, lines[1][12:].split(", Y+")))
-        prize = tuple(map(lambda x: int(x) + 10000000000000,
+import sys
+sys.path.append("..")
+from helpers import *  # noqa
+
+machines = parse_input("./input.txt", Parse.two_lines)
+data = []
+for m in machines:
+    lines = m.split("\n")
+    a = tuple(map(int, lines[0][12:].split(", Y+")))
+    b = tuple(map(int, lines[1][12:].split(", Y+")))
+    prize = tuple(map(lambda x: int(x) + 10000000000000,
                       lines[2][9:].split(", Y=")))
-        data.append([a, b, prize])
+    data.append([a, b, prize])
 
 
 def mostly_int(a):
