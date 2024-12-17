@@ -1,6 +1,10 @@
+import time
 import sys
 sys.path.append("..")
 from helpers import *  # noqa
+
+
+start = time.time()
 
 # PARSE DATA
 data = parse_input("./input.txt", Parse.chars2d)
@@ -54,3 +58,5 @@ while winning_paths:
         winning_paths.append(path_to_parent[wp])
 
 print(len(good_seats))
+
+print(time.time()-start)
