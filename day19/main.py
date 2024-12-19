@@ -10,26 +10,26 @@ count = 0
 count2 = 0
 
 for d in desired:
-    paths = [""]
+    paths = [0]
     seen = set()
 
     counts = defaultdict(int)
-    counts[""] = 1
+    counts[0] = 1
     winners = set()
 
     while paths:
-        paths.sort(key=len)
+        paths.sort()
         p = paths.pop(0)
 
-        if p not in seen and len(p) <= len(d):
-            goal = d[len(p):]
+        if p not in seen and p <= len(d):
+            goal = d[p:]
 
             for a in avail:
                 if goal.startswith(a):
-                    if p + a == d:
+                    if goal == a:
                         winners.add(p)
-                    paths.append(p + a)
-                    counts[p+a] += counts[p]
+                    paths.append(p + len(a))
+                    counts[p+len(a)] += counts[p]
                     seen.add(p)
 
     for w in winners:
