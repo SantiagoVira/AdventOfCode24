@@ -39,12 +39,12 @@ def check_list2d(mat: List[List[T]], x: int, y: int, target: T) -> bool:
     return y in range(len(mat)) and x in range(len(mat[y])) and mat[y][x] == target
 
 
-def cardinal_moves_indicies(w: int, h: int, x: int, y: int, include_all: bool = False) -> List[Tuple[int, int]]:
+def cardinal_moves_indicies(w: int, h: int, x: int, y: int, include_all: bool = False, factor: int = 1) -> List[Tuple[int, int]]:
     moves = [(0, -1), (1, 0), (0, 1), (-1, 0)]
     final = []
     for m in moves:
-        if include_all or (m[0] + x in range(w) and m[1] + y in range(h)):
-            final.append((m[0] + x, m[1] + y))
+        if include_all or (m[0] * factor + x in range(w) and m[1] * factor + y in range(h)):
+            final.append((m[0] * factor + x, m[1] * factor + y))
 
     return final
 
