@@ -2,6 +2,9 @@ import math
 from collections import Counter, deque, defaultdict
 from typing import TypeVar, List, Tuple, Callable
 from copy import deepcopy
+import itertools
+from functools import cache
+
 
 T = TypeVar('T')
 
