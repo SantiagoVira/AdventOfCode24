@@ -11,11 +11,9 @@ def mix_and_prune(prev, new):
 
 
 def calc_secret(prev):
-    secret = mix_and_prune(prev, prev * (2**6))
-    secret = mix_and_prune(secret, secret // 32)
-    secret = mix_and_prune(secret, secret * (2**11))
-
-    return secret
+    secret = mix_and_prune(prev, prev << 6)
+    secret = mix_and_prune(secret, secret >> 5)
+    return mix_and_prune(secret, secret << 11)
 
 
 total = 0
