@@ -110,7 +110,8 @@ def get_path(code, pad):
     path = []
     sym = "A"
     for c in code:
-        path += path_from_to(sym, c, pad)
+        print(sym, c, path)
+        path.append(path_from_to(sym, c, pad))
         sym = c
     return Counter(path)
 
@@ -120,7 +121,7 @@ total = 0
 for code in codes:
     path = get_path(code, 0)
     print("".join(code))
-    for i in range(25):
+    for i in range(2):
         print(i)
         path = get_path(path, 1)
     numeric_code = int("".join(c for c in code if c.isnumeric()))
