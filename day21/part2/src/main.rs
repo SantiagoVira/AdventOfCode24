@@ -1,4 +1,3 @@
-use core::num;
 use std::collections::HashMap;
 use std::fs;
 
@@ -73,14 +72,13 @@ fn path_from_to<'a>(fr: char, to: char, pad_num: i32) -> String {
     return vertical + &horizontal + "A";
 }
 
-fn get_path<'a>(code_counter: &mut Counter<String, usize>, pad: i32) -> Counter<String, usize> {
+fn get_path<'a>(code_counter: Counter<String, usize>, pad: i32) -> Counter<String, usize> {
     let mut new_counter: Counter<String, usize> = Counter::new();
     for (code, count) in code_counter {
         let mut sym = 'A';
         for c in code.chars() {
             let path = path_from_to(sym, c, pad);
-            // println!("{}, {}, {}", sym, c, path);
-            new_counter[&path] += *count;
+            new_counter[&path] += count;
             sym = c;
         }
     }
@@ -93,13 +91,11 @@ fn main() {
     let codes = codes.split_whitespace();
     let mut total = 0;
     for code in codes {
-        println!("{}", code);
         let mut code_counter: Counter<String, usize> = Counter::new();
         code_counter[&String::from(code)] = 1;
-        let mut path = get_path(&mut code_counter, 0);
-        for i in 0..25 {
-            println!("{:?}", i);
-            path = get_path(&mut path, 1);
+        let mut path = get_path(code_counter, 0);
+        for _i in 0..25 {
+            path = get_path(path, 1);
         }
         let numeric_code = code
             .chars()
